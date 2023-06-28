@@ -1,5 +1,5 @@
 import {test,expect} from "@playwright/test"
-import { Form } from "./form-dev-page"
+import { Form } from "../page/simpleFormDemo"
 
 test.describe('Visit Selenium Easy Demo Page',()=>{
     test.beforeEach(async ({page})=> {
