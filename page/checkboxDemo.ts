@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from '@playwright/test';
 
 export class Checkbox {
   readonly page: Page;
@@ -9,9 +9,9 @@ export class Checkbox {
 
   constructor(page: Page) {
     this.page = page;
-    this.singleCheckbox = page.locator("form input");
+    this.singleCheckbox = page.locator('form input');
     this.successMsg = page.locator('[id="txtAge"]');
-    this.multipleCheckbox = page.locator("input.cb1-element");
+    this.multipleCheckbox = page.locator('input.cb1-element');
     this.checkButton = page.locator('[id="check1"]');
   }
 
