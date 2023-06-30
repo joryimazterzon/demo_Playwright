@@ -15,4 +15,12 @@ test.describe('Visit Selenium Easy Demo Page',()=>{
         await check.validateDefaulCheckbox();
         await check.validateDisabledCheckbox();
     })
+    test('Multiple Checkbox Demo',async ({page})=>{
+        await page.goto('/basic-checkbox-demo.html')
+        const multi = new Checkbox(page)
+        await multi.validateUncheckCheckbox('Check All')
+        await multi.clickCheckAllButton()
+        await multi.validateAllCheckboxesChecked('Uncheck All')
+        await multi.clickSpecificCheckbox(1,'Check All')
+    })
 })
