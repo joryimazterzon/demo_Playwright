@@ -1,5 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
-
+import { expect, Locator, Page } from '@playwright/test';
 export class FormSubmit {
   readonly page: Page;
   readonly firstName: Locator;
@@ -28,7 +27,7 @@ export class FormSubmit {
     this.webSite = page.locator('[name="website"]');
     this.hosting = page.locator('[name="hosting"]');
     this.projectDescription = page.locator('[name="comment"]');
-    this.submit = page.locator("button.btn-default");
+    this.submit = page.locator('button.btn-default');
   }
 
   /**
@@ -37,10 +36,9 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterFirstName()
    */
-  async enterFirstName() {
-    await this.firstName.fill("a");
-
-    await this.firstName.fill(process.env.FIRST_NAME);
+  async enterFirstName(FIRST_NAME: string) {
+    await this.firstName.fill('a');
+    await this.firstName.fill(FIRST_NAME);
   }
 
   /**
@@ -49,8 +47,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterLastName()
    */
-  async enterLastName() {
-    await this.lastName.fill(process.env.LAST_NAME);
+  async enterLastName(LAST_NAME: string) {
+    await this.lastName.fill(LAST_NAME);
   }
 
   /**
@@ -59,8 +57,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterEmail()
    */
-  async enterEmail() {
-    await this.eMail.fill(process.env.EMAIL);
+  async enterEmail(EMAIL: string) {
+    await this.eMail.fill(EMAIL);
   }
 
   /**
@@ -69,8 +67,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterPhone()
    */
-  async enterPhone() {
-    await this.phone.fill(process.env.PHONE);
+  async enterPhone(PHONE: string) {
+    await this.phone.fill(PHONE);
   }
 
   /**
@@ -79,8 +77,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterAddress()
    */
-  async enterAddress() {
-    await this.address.fill(process.env.ADDRESS);
+  async enterAddress(ADDRESS: string) {
+    await this.address.fill(ADDRESS);
   }
 
   /**
@@ -89,8 +87,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterCity()
    */
-  async enterCity() {
-    await this.city.fill(process.env.CITY);
+  async enterCity(CITY: string) {
+    await this.city.fill(CITY);
   }
 
   /**
@@ -99,8 +97,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterState()
    */
-  async enterState() {
-    await this.state.selectOption(process.env.STATE);
+  async enterState(STATE: string) {
+    await this.state.selectOption(STATE);
   }
 
   /**
@@ -109,8 +107,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterZIP()
    */
-  async enterZIP() {
-    await this.zipCode.fill(process.env.ZIP_CODE);
+  async enterZIP(ZIP_CODE: string) {
+    await this.zipCode.fill(ZIP_CODE);
   }
 
   /**
@@ -119,8 +117,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterWebsite()
    */
-  async enterWebsite() {
-    await this.webSite.fill(process.env.WEBSITE);
+  async enterWebsite(WEBSITE: string) {
+    await this.webSite.fill(WEBSITE);
   }
 
   /**
@@ -129,8 +127,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.selectHosting()
    */
-  async selectHosting() {
-    if (process.env.HOSTING == "true") {
+  async selectHosting(HOSTING: boolean) {
+    if (HOSTING) {
       await this.hosting.first().click();
     } else {
       await this.hosting.last().click();
@@ -143,8 +141,8 @@ export class FormSubmit {
    * @example
    *    FormSubmit.enterProjectDescription()
    */
-  async enterProjectDescription() {
-    await this.projectDescription.fill(process.env.PROJECT_DESCRIPTION);
+  async enterProjectDescription(PROJECT_DESCRIPTION: string) {
+    await this.projectDescription.fill(PROJECT_DESCRIPTION);
   }
 
   /**
