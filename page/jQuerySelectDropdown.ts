@@ -6,8 +6,10 @@ export class JQuerySelect {
   readonly selectCountryTxb: Locator;
   readonly selectCountryItem: Locator;
   readonly selectStateDd: Locator;
-  readonly selectStateItem: Locator;
   readonly selectedStateChip: Locator;
+  readonly selectTerritoryDd: Locator;
+  readonly selectTerritoryTxb: Locator;
+  readonly selectCategoryDb: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -17,10 +19,12 @@ export class JQuerySelect {
     this.selectCountryTxb = page.locator('span.select2-search input');
     this.selectCountryItem = page.locator('[id="select2-country-results"] li');
     this.selectStateDd = page.locator('input.select2-search__field');
-    this.selectStateItem = page.locator('li.select2-results__option');
     this.selectedStateChip = page.locator(
       'span.select2-selection li.select2-selection__choice '
     );
+    this.selectTerritoryDd = page.locator('span.select2-selection__rendered');
+    this.selectTerritoryTxb = page.locator('input.select2-search__field');
+    this.selectCategoryDb = page.locator('select[name="files"]');
   }
 
   /**
@@ -66,5 +70,71 @@ export class JQuerySelect {
         sortedState[i]
       );
     }
+  }
+
+  /**
+   * Select Territories from Dropdown with Disabled Values
+   *
+   * @argument territory to select
+   * @example
+   *    JQuerySelect.selectTerritory('Puerto Rico')
+   *
+   */
+  async selectTerritory(territory: string) {
+    await this.selectTerritoryDd.last().click();
+    await this.selectTerritoryTxb.last().fill(territory);
+    await this.page.getByRole('treeitem', { name: territory }).click();
+  }
+
+  /**
+   * Validate the territory is selected
+   *
+   * @argument territory to validate
+   * @example
+   *    JQuerySelect.validateTerritory('Puerto Rico')
+   *
+   */
+  async validateTerritory(territory: string) {
+    await expect(this.selectTerritoryDd.last()).toHaveText(territory);
+  }
+
+  /**
+   * Validate the territory was not selected
+   *
+   * @argument territory to validate
+   * @example
+   *    JQuerySelect.validateTerritoryNotSelected('Guam')
+   *
+   */
+  async validateTerritoryNotSelected(territory: string) {
+    await this.selectTerritoryDd.last().click();
+    await this.selectTerritoryTxb.last().fill(territory);
+    await expect(
+      this.page.getByRole('treeitem', { name: territory })
+    ).toBeDisabled();
+  }
+
+  /**
+   * Select Category dropdown
+   *
+   * @argument category to select
+   * @example
+   *    JQuerySelect.selectCategory('PHP')
+   *
+   */
+  async selectCategory(category: string) {
+    await this.selectCategoryDb.selectOption(category);
+  }
+
+  /**
+   * Validate the category is selected
+   *
+   * @argument category to validate
+   * @example
+   *    JQuerySelect.validateCategory('PHP')
+   *
+   */
+  async validateCategory(category: string) {
+    await expect(this.selectCategoryDb).toHaveValue(category);
   }
 }
