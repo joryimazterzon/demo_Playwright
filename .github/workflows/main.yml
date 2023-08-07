@@ -23,6 +23,6 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
       - name: Run Playwright tests
         run: npx playwright test --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
